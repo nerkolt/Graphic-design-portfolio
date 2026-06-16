@@ -1,0 +1,7 @@
+{
+  "name": "Nour Portfolio Website Boards",
+  "id": "nour-portfolio-website-boards",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}
