@@ -43,7 +43,7 @@ export default async function WebsiteDetailPage({ params }: PageProps) {
       <article>
         <section className="art-canvas py-12 sm:py-20">
           <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
-            <Link href="/#websites" className="button-ghost">
+            <Link href="/websites" className="button-ghost">
               <ArrowLeft size={18} />
               Back to websites
             </Link>
@@ -59,7 +59,12 @@ export default async function WebsiteDetailPage({ params }: PageProps) {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {site.figmaUrl ? (
+              {site.liveUrl ? (
+                <a href={site.liveUrl} target="_blank" rel="noreferrer" className="button-primary">
+                  Open live site
+                  <ExternalLink size={16} />
+                </a>
+              ) : site.figmaUrl ? (
                 <a href={site.figmaUrl} target="_blank" rel="noreferrer" className="button-primary">
                   Open Figma
                   <ExternalLink size={16} />

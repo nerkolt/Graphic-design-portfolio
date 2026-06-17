@@ -46,7 +46,7 @@ export function Header() {
             />
           </span>
           <span className="font-tech hidden text-sm font-semibold uppercase text-[#e5e2e1] sm:inline">
-            {profile.name}
+            Portfolio
           </span>
         </Link>
         <nav className="flex max-w-[68vw] items-center gap-1 overflow-x-auto">
@@ -65,7 +65,7 @@ export function Header() {
   );
 }
 
-export function Footer() {
+export function Footer({ showProjectCta = false }: { showProjectCta?: boolean }) {
   const socialLinks = [
     { href: profile.socials.github, label: "GitHub", icon: GitHubMark },
     { href: profile.socials.linkedin, label: "LinkedIn", icon: LinkedInMark },
@@ -74,21 +74,23 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#0a0a0a] text-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8">
-        <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
-          <div>
-            <p className="font-tech text-sm uppercase text-[#00f0ff]">Graphic design / video editing</p>
-            <h2 className="font-display mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-5xl">
-              Need visuals that look considered and move fast?
-            </h2>
+        {showProjectCta && (
+          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <p className="font-tech text-sm uppercase text-[#00f0ff]">Graphic design / video editing</p>
+              <h2 className="font-display mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-5xl">
+                Need visuals that look considered and move fast?
+              </h2>
+            </div>
+            <a
+              href={`mailto:${profile.email}`}
+              className="button-primary"
+            >
+              <Mail size={18} />
+              Start a project
+            </a>
           </div>
-          <a
-            href={`mailto:${profile.email}`}
-            className="button-primary"
-          >
-            <Mail size={18} />
-            Start a project
-          </a>
-        </div>
+        )}
 
         <div className="grid gap-6 border-t border-white/10 pt-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
@@ -130,14 +132,24 @@ export function Footer() {
   );
 }
 
-export function PageShell({ children }: { children: React.ReactNode }) {
+export function PageShell({
+  children,
+  showFooterCta = false,
+  hideHeader = false,
+  hideFooter = false,
+}: {
+  children: React.ReactNode;
+  showFooterCta?: boolean;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
+}) {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e5e2e1]">
       <ScrollProgress />
       <SectionRevealObserver />
-      <Header />
+      {!hideHeader && <Header />}
       <main>{children}</main>
-      <Footer />
+      {!hideFooter && <Footer showProjectCta={showFooterCta} />}
       <FirstVisitNewsletterModal />
     </div>
   );

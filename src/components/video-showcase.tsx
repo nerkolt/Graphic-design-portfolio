@@ -70,16 +70,14 @@ function PortfolioVideoGrid({ videoProjects }: { videoProjects: typeof projects 
   return (
     <div className="grid gap-8">
       <div className="scanner-panel overflow-hidden">
-        <div className="relative grid aspect-video place-items-center overflow-hidden text-white">
-          <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent,rgba(0,240,255,0.12),transparent)]" />
-          <div className="relative text-center">
-            <span className="mx-auto mb-5 grid size-16 place-items-center rounded-full border border-[#ff525c] text-[#ff525c] shadow-[0_0_28px_rgba(255,82,92,0.32)]">
-              <Play size={30} fill="currentColor" />
-            </span>
-            <p className="font-tech text-sm uppercase text-white/60">Featured showreel</p>
-            <p className="font-display mt-2 text-2xl font-bold">Replace this embed with your strongest showreel.</p>
-          </div>
-        </div>
+        <iframe
+          className="aspect-video w-full border-0"
+          src="https://www.youtube.com/embed/Bh1xyiOPjQc"
+          title="Featured showreel"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
         <div className="flex flex-col justify-between gap-4 p-5 sm:flex-row sm:items-center sm:p-6">
           <div>
             <p className="font-tech text-xs font-bold uppercase text-[#00f0ff]">Featured reel</p>
@@ -135,12 +133,20 @@ function PublishedPostFeed() {
         <a key={video.url} href={video.url} target="_blank" rel="noreferrer" className="group block">
           <article className="scanner-panel grid overflow-hidden p-4 transition duration-300 hover:border-[#00f0ff]/70 hover:shadow-[0_0_32px_rgba(0,240,255,0.18)] lg:grid-cols-[0.9fr_1.1fr]">
             <div className="relative grid aspect-video place-items-center overflow-hidden border border-[#849495]/30 bg-[#201f1f]">
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,240,255,0.16),transparent_42%,rgba(255,82,92,0.14))]" />
+              <Image
+                src={video.thumbnail}
+                alt={`${video.title} thumbnail`}
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,0,0,0.38),rgba(0,240,255,0.08)_42%,rgba(0,0,0,0.55))]" />
+              <div className="absolute inset-0 border border-white/5" />
               <div className="absolute left-4 top-4 flex items-center gap-3">
-                <span className="grid size-11 place-items-center border border-[#00f0ff]/50 bg-[#0a0a0a]/80">
+                <span className="grid size-11 place-items-center border border-[#00f0ff]/50 bg-[#0a0a0a]/75 backdrop-blur-md">
                   <span className="font-tech text-xs font-black text-[#00f0ff]">IGS</span>
                 </span>
-                <div>
+                <div className="rounded-sm bg-[#0a0a0a]/55 px-3 py-2 backdrop-blur-md">
                   <p className="font-tech text-xs font-bold uppercase text-[#e5e2e1]">Inherited Games Studio</p>
                   <p className="font-tech text-[10px] uppercase text-[#b9cacb]">{video.source}</p>
                 </div>
@@ -149,10 +155,10 @@ function PublishedPostFeed() {
                 className="absolute bottom-4 left-4 h-2 w-24 shadow-[0_0_18px_currentColor]"
                 style={{ backgroundColor: video.accent }}
               />
-              <span className="relative grid size-16 place-items-center rounded-full border border-[#ff525c] bg-[#0a0a0a]/80 text-[#ff525c] shadow-[0_0_28px_rgba(255,82,92,0.32)] transition group-hover:scale-110">
+              <span className="relative grid size-16 place-items-center rounded-full border border-[#ff525c] bg-[#0a0a0a]/70 text-[#ff525c] shadow-[0_0_28px_rgba(255,82,92,0.32)] backdrop-blur-md transition group-hover:scale-110">
                 <Play size={28} fill="currentColor" />
               </span>
-              <p className="font-tech absolute bottom-4 right-4 bg-[#0a0a0a]/80 px-3 py-2 text-xs uppercase text-[#e5e2e1]">
+              <p className="font-tech absolute bottom-4 right-4 bg-[#0a0a0a]/70 px-3 py-2 text-xs uppercase text-[#e5e2e1] backdrop-blur-md">
                 Open post
               </p>
             </div>

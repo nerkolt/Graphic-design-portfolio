@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Mail, Send } from "lucide-react";
 import { Eyebrow, PageShell } from "@/components/site-shell";
 import { profile } from "@/data/portfolio";
@@ -13,18 +14,32 @@ export default function ContactPage() {
               Tell me what you are making next.
             </h1>
           </div>
-          <div className="scanner-panel p-6 sm:p-8">
-            <p className="text-lg leading-8 text-[#b9cacb]">
-              For now, this uses a simple email link so the site can deploy without backend setup.
-              Later we can add a Vercel-ready contact form with Resend, Formspree, or another service.
-            </p>
-            <a
-              href={`mailto:${profile.email}?subject=Portfolio inquiry`}
-              className="button-primary mt-8"
-            >
-              <Mail size={18} />
-              Email {profile.name}
-            </a>
+          <div className="scanner-panel grid gap-0 overflow-hidden p-0">
+            <div className="relative mx-auto mt-6 aspect-[4/3] w-[min(78%,340px)] overflow-hidden border border-[#00f0ff]/35 bg-[#201f1f] shadow-[0_0_28px_rgba(0,240,255,0.16)] sm:mt-8">
+              <Image
+                src="/nour-ltaief-pfp.png"
+                alt={`${profile.name} portrait`}
+                fill
+                sizes="(min-width: 768px) 340px, 78vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="mx-5 mt-7 border border-[#849495]/25 bg-[#0a0a0a]/60 p-5 sm:mx-8 sm:p-6">
+              <p className="text-center text-lg leading-8 text-[#b9cacb]">
+                For now, this uses a simple email link so the site can deploy without backend setup.
+                Later we can add a Vercel-ready contact form with Resend, Formspree, or another service.
+              </p>
+            </div>
+            <div className="flex justify-center px-5 py-7 sm:py-8">
+              <a
+                href={`mailto:${profile.email}?subject=Portfolio inquiry`}
+                className="button-primary"
+              >
+                <Mail size={18} />
+                Email {profile.name}
+              </a>
+            </div>
           </div>
         </div>
       </section>

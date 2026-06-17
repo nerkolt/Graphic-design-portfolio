@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ChevronDown, ExternalLink, Film, Layers, MousePointer2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, Download, ExternalLink, Film, Layers, MousePointer2 } from "lucide-react";
 import { Eyebrow, PageShell } from "@/components/site-shell";
+import { HeroAvatar3D } from "@/components/hero-avatar-3d";
 import { ProjectCard } from "@/components/project-card";
 import { designShowcase, profile, projects, services, websiteShowcase } from "@/data/portfolio";
 
@@ -35,7 +36,18 @@ const workflowSteps = [
 ];
 
 export default function Home() {
-  const featured = projects.slice(0, 4);
+  const featured = projects
+    .filter((project) => project.category === "Video Editing" || project.videoUrl)
+    .slice(0, 4);
+  const homepageDesignSlugs = new Set([
+    "igs-business-card",
+    "igs-medical-rehab-rollup",
+    "ecovelle-green-solution-rollup",
+  ]);
+  const homepageDesigns = designShowcase
+    .filter((item) => homepageDesignSlugs.has(item.slug))
+    .slice(0, 3);
+  const homepageWebsites = websiteShowcase.slice(0, 2);
 
   return (
     <PageShell>
@@ -61,30 +73,40 @@ export default function Home() {
               >
                 Contact
               </Link>
+              <a
+                href="/files/nour-ltaief-cv.pdf"
+                download="Nour_Ltaief_CV.pdf"
+                className="button-ghost"
+              >
+                Download CV
+                <Download size={18} />
+              </a>
             </div>
           </div>
           <div className="reveal-up delay-3 grid gap-4">
-            <div className="scanner-panel grid aspect-[4/5] content-between overflow-hidden p-6 text-white">
+            <div className="scanner-panel grid min-h-[700px] overflow-hidden p-6 text-white lg:min-h-[620px]">
               <div className="font-tech flex items-center justify-between text-xs uppercase text-white/55">
                 <span>{profile.role}</span>
                 <span>{profile.location}</span>
               </div>
-              <div className="grid grid-cols-6 gap-2 [perspective:600px]">
-                {Array.from({ length: 30 }).map((_, index) => (
-                  <span
-                    key={index}
-                    className="aspect-square animate-pulse border border-white/10"
-                    style={{
-                      backgroundColor: ["#00f0ff", "#ff525c", "#d2c972", "#353534"][index % 4],
-                      opacity: index % 5 === 0 ? 1 : 0.72,
-                      animationDelay: `${index * 70}ms`,
-                    }}
-                  />
-                ))}
+              <div className="mt-4">
+                <HeroAvatar3D />
               </div>
-              <div>
+              <div className="relative z-10 mt-6 border-t border-[#849495]/20 pt-5">
                 <p className="font-display max-w-md text-4xl font-bold leading-tight">
                   Brand visuals, campaign systems, and edited stories with a clear pulse.
+                </p>
+                <p className="font-tech mt-4 text-[10px] uppercase leading-5 text-[#849495]">
+                  3D model credit:{" "}
+                  <a
+                    href="https://sketchfab.com/3d-models/ready-player-me-female-avatar-vrchatgame-4b58e590e9fc422dbbf176c1848dc898"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#00f0ff] underline-offset-4 hover:underline"
+                  >
+                    Ready Player Me female avatar
+                  </a>
+                  {" "}by Ready Player Me, CC BY-NC-SA.
                 </p>
               </div>
             </div>
@@ -104,10 +126,10 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="tool-marquee-band overflow-hidden border-y border-[#00f0ff]/65 bg-[#353534]/35 py-4 shadow-[0_0_28px_rgba(0,240,255,0.12)] backdrop-blur-md">
-        <div className="ticker flex w-max items-center gap-6">
+      <div className="tool-marquee-band overflow-hidden py-4">
+        <div className="ticker flex w-max items-center gap-8">
           {Array.from({ length: 3 }).map((_, loop) => (
-            <div key={loop} className="flex items-center gap-6">
+            <div key={loop} className="flex items-center gap-8">
               {toolIcons.map((tool) => (
                 <div key={`${loop}-${tool.name}`} className="tool-badge">
                   <Image
@@ -193,7 +215,7 @@ export default function Home() {
             <div>
               <Eyebrow>Featured work</Eyebrow>
               <h2 className="font-display mt-3 max-w-3xl text-4xl font-extrabold leading-tight text-[#e5e2e1] sm:text-6xl">
-                Case studies made for quick scanning and deeper review.
+                Actual video edits ready for quick playback and deeper review.
               </h2>
             </div>
             <Link href="/video" className="button-ghost">
@@ -225,7 +247,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-3">
-            {designShowcase.map((item, index) => (
+            {homepageDesigns.map((item, index) => (
               <Link
                 href={`/designs#${item.slug}`}
                 key={item.title}
@@ -293,7 +315,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-6">
-            {websiteShowcase.map((site, index) => (
+            {homepageWebsites.map((site, index) => (
               <article
                 key={site.title}
                 className="scanner-panel grid gap-5 overflow-hidden p-4 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
@@ -333,7 +355,17 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {site.figmaUrl ? (
+                    {site.liveUrl ? (
+                      <a
+                        href={site.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="button-ghost"
+                      >
+                        Open live site
+                        <ExternalLink size={16} />
+                      </a>
+                    ) : site.figmaUrl ? (
                       <a
                         href={site.figmaUrl}
                         target="_blank"
@@ -367,6 +399,12 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="mt-14 flex justify-center">
+            <Link href="/websites" className="button-primary">
+              See all websites
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

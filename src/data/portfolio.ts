@@ -28,6 +28,7 @@ export type WebsiteShowcase = {
   summary: string;
   repoUrl: string;
   figmaUrl: string;
+  liveUrl?: string;
   figmaStatus: string;
   walkthrough: string;
   screens: string[];
@@ -52,12 +53,18 @@ export type DesignShowcase = {
   image: string;
   accent: string;
   aspect: "portrait" | "square" | "landscape";
+  ratio?: string;
+  gallery?: {
+    label: string;
+    src: string;
+  }[];
 };
 
 export type PostedVideo = {
   title: string;
   source: string;
   url: string;
+  thumbnail: string;
   tags: string[];
   summary: string;
   accent: string;
@@ -69,7 +76,7 @@ export const profile = {
   logo: "/nour-ltaief-logo.png",
   role: "Graphic Designer & Video Editor",
   location: "Tunisia",
-  email: "hello@example.com",
+  email: "nour0ltaief@gmail.com",
   headline: "Visual systems, edits, and campaign assets built with sharp rhythm and commercial polish.",
   bio: "I help brands, creators, and teams turn raw ideas into memorable visuals across identity, social content, campaign graphics, and edited video.",
   availability: "Available for freelance projects, brand packages, and editing retainers.",
@@ -140,6 +147,38 @@ export const projects: Project[] = [
     accent: "#42a978",
     deliverables: ["Animated lineup", "Lower thirds", "LED screen loops", "Social teasers"],
   },
+  {
+    slug: "youtube-edit-showcase",
+    title: "YouTube Edit Showcase",
+    category: "Video Editing",
+    year: "2026",
+    role: "Video editing, pacing, export prep",
+    tools: ["Premiere Pro", "After Effects", "Photoshop"],
+    summary: "A published YouTube video edit added to the portfolio library for quick review and direct playback.",
+    challenge: "The edit needed to keep viewer attention while packaging the footage into a clean online presentation.",
+    approach: "I focused on pacing, visual continuity, and a thumbnail-ready export so the piece could work as a standalone portfolio sample.",
+    outcome: "The final video is available as an embedded playback item and can be reviewed directly from the video portfolio.",
+    image: "https://img.youtube.com/vi/RFGKiDubmkc/hqdefault.jpg",
+    accent: "#ff525c",
+    videoUrl: "https://www.youtube.com/embed/RFGKiDubmkc",
+    deliverables: ["YouTube edit", "Playback embed", "Thumbnail frame", "Portfolio presentation"],
+  },
+  {
+    slug: "urgent-care-congress-short",
+    title: "Urgent Care Congress Short",
+    category: "Video Editing",
+    year: "2026",
+    role: "Short-form edit, event pacing, social export",
+    tools: ["Premiere Pro", "After Effects", "Photoshop"],
+    summary: "A YouTube Shorts event edit for an urgent care congress, built around venue atmosphere, stage energy, and quick social playback.",
+    challenge: "The event footage needed to feel immediate and polished while staying concise enough for a vertical short-form platform.",
+    approach: "I shaped the sequence around fast establishing shots, clean transitions, and a thumbnail that clearly communicates the conference scale.",
+    outcome: "The final short works as a quick social proof piece and a compact portfolio example for event-focused video editing.",
+    image: "/video-thumbnails/urgent-care-congress-short.png",
+    accent: "#00f0ff",
+    videoUrl: "https://www.youtube.com/embed/4PcvZqasCB8",
+    deliverables: ["YouTube Short", "Event recap edit", "Thumbnail frame", "Social export"],
+  },
 ];
 
 export const services = [
@@ -163,6 +202,7 @@ export const designShowcase: DesignShowcase[] = [
     image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1400&q=85",
     accent: "#00f0ff",
     aspect: "portrait",
+    ratio: "9 / 16",
   },
   {
     slug: "logo-direction-study",
@@ -175,6 +215,7 @@ export const designShowcase: DesignShowcase[] = [
     image: "/nour-ltaief-logo.png",
     accent: "#ff525c",
     aspect: "square",
+    ratio: "1 / 1",
   },
   {
     slug: "mobile-app-interface",
@@ -187,6 +228,65 @@ export const designShowcase: DesignShowcase[] = [
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1400&q=85",
     accent: "#d2c972",
     aspect: "landscape",
+    ratio: "16 / 10",
+  },
+  {
+    slug: "igs-business-card",
+    title: "RehabX Business Card Set",
+    type: "Brand Collateral",
+    format: "Print / Full Card System",
+    summary: "A full RehabX business card set with a logo mark, front side, and two alternate contact backs in white and blue.",
+    tools: ["Illustrator"],
+    deliverables: ["Front side", "White back", "Blue back", "Logo mark"],
+    image: "/design-archive/rehabx-card-front.png",
+    accent: "#d2c972",
+    aspect: "landscape",
+    ratio: "16 / 10",
+    gallery: [
+      { label: "Front", src: "/design-archive/rehabx-card-front.png" },
+      { label: "White back", src: "/design-archive/rehabx-card-back-white.png" },
+      { label: "Blue back", src: "/design-archive/rehabx-card-back-blue.png" },
+      { label: "Logo", src: "/design-archive/rehabx-card-logo.png" },
+    ],
+  },
+  {
+    slug: "igs-ai-ar-rollup",
+    title: "IGS AI & AR Rollup",
+    type: "Rollups",
+    format: "Print / Rollup",
+    summary: "A large-format Inherited Games Studio rollup presenting AI, augmented reality, and virtual reality services with clear event-booth hierarchy.",
+    tools: ["Photoshop"],
+    deliverables: ["Rollup design", "Service messaging", "Contact strip"],
+    image: "/design-archive/igs-ai-ar-rollup.jpg",
+    accent: "#00f0ff",
+    aspect: "portrait",
+    ratio: "2108 / 4300",
+  },
+  {
+    slug: "igs-medical-rehab-rollup",
+    title: "Medical Rehab Rollup",
+    type: "Rollups",
+    format: "Print / Rollup",
+    summary: "A medical technology rollup for VR rehabilitation, AI motion analysis, and training simulation, built around clinical clarity and strong sectioning.",
+    tools: ["Photoshop"],
+    deliverables: ["Rollup design", "Healthcare messaging", "Service icons"],
+    image: "/design-archive/igs-medical-rehab-rollup.jpg",
+    accent: "#00f0ff",
+    aspect: "portrait",
+    ratio: "2409 / 5669",
+  },
+  {
+    slug: "ecovelle-green-solution-rollup",
+    title: "Ecovelle Green Solution",
+    type: "Rollups",
+    format: "Print / Rollup",
+    summary: "A sustainability-focused rollup for recycling, plant care, and community engagement features with a soft green visual direction.",
+    tools: ["Photoshop"],
+    deliverables: ["Rollup design", "Feature hierarchy", "Contact footer"],
+    image: "/design-archive/ecovelle-green-solution-rollup.jpeg",
+    accent: "#42a978",
+    aspect: "portrait",
+    ratio: "627 / 1280",
   },
 ];
 
@@ -207,12 +307,14 @@ export const websiteShowcase: WebsiteShowcase[] = [
     figmaUrl: "",
     figmaStatus: "Figma rebuild pending",
     walkthrough: "Game landing page scroll and app CTA preview",
-    screens: ["Live desktop", "Full landing", "Mobile hero"],
-    image: "/project-previews/royal-dagish-live-home.png",
+    screens: ["Home page", "Alternate home", "About page", "Delete account", "Responsive capture"],
+    image: "/project-previews/royal-dagish-home-page.png",
     gallery: [
-      "/project-previews/royal-dagish-live-home.png",
-      "/project-previews/royal-dagish-live-full.png",
-      "/project-previews/royal-dagish-live-mobile.png",
+      "/project-previews/royal-dagish-home-page.png",
+      "/project-previews/royal-dagish-home-page-2.png",
+      "/project-previews/royal-dagish-about.png",
+      "/project-previews/royal-dagish-delete-account.png",
+      "/project-previews/royal-dagish-extra.png",
     ],
     details: {
       overview:
@@ -240,12 +342,14 @@ export const websiteShowcase: WebsiteShowcase[] = [
     figmaUrl: "",
     figmaStatus: "Figma system pending",
     walkthrough: "Marketplace hero, asset grid, and 3D preview flow",
-    screens: ["Live desktop", "Full homepage", "Mobile capture"],
-    image: "/project-previews/marketplace-live-home.png",
+    screens: ["Home page", "Hot page", "Model page", "Scripts page", "Texture page"],
+    image: "/project-previews/marketplace-home-page.png",
     gallery: [
-      "/project-previews/marketplace-live-home.png",
-      "/project-previews/marketplace-live-full.png",
-      "/project-previews/marketplace-live-mobile.png",
+      "/project-previews/marketplace-home-page.png",
+      "/project-previews/marketplace-hot-page.png",
+      "/project-previews/marketplace-model-page.png",
+      "/project-previews/marketplace-scripts.png",
+      "/project-previews/marketplace-texture-page.png",
     ],
     details: {
       overview:
@@ -258,7 +362,7 @@ export const websiteShowcase: WebsiteShowcase[] = [
   {
     slug: "gamestudio-website",
     title: "GameStudio Website",
-    status: "Figma design",
+    status: "Live website",
     stack: "Figma / Game studio landing UI",
     stackItems: [
       { name: "Figma", mark: "Fi", color: "#a259ff" },
@@ -267,12 +371,13 @@ export const websiteShowcase: WebsiteShowcase[] = [
     ],
     summary: "A GameStudio website concept prepared in Figma, suitable for showing the visual direction, page structure, and responsive interface before development.",
     repoUrl: "",
-    figmaUrl: "https://www.figma.com/design/OByNVekr7huJFPawI5a0w9/GameStudio-website?node-id=0-1&t=u0PYezOfSgOZasNg-1",
-    figmaStatus: "Figma link ready",
-    walkthrough: "Figma prototype and screen review",
-    screens: ["Hero concept", "Studio sections", "Responsive screens"],
-    image: "https://images.unsplash.com/photo-1556438064-2d7646166914?auto=format&fit=crop&w=1600&q=85",
-    gallery: [],
+    figmaUrl: "",
+    liveUrl: "https://inheritedgames.com/",
+    figmaStatus: "Live site ready",
+    walkthrough: "Live game studio website review",
+    screens: ["IGS homepage", "Marketplace hero", "Live website"],
+    image: "/project-previews/igs-website-home.png",
+    gallery: ["/project-previews/igs-website-home.png"],
     details: {
       overview:
         "GameStudio Website is currently represented by the Figma design file, making it best suited for reviewing visual direction, page rhythm, and responsive design decisions before development.",
@@ -288,6 +393,7 @@ export const postedVideos: PostedVideo[] = [
     title: "MedPilotVR",
     source: "LinkedIn post",
     url: "https://www.linkedin.com/posts/inherited-games-studio_medpilotvr-medicaleducation-vrtraining-activity-7348656595142111232-T7Gl?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE9ulo4BQ4C5rCdO_Kv0uBIG9IvyK0a5Mww",
+    thumbnail: "/video-thumbnails/medpilotvr.png",
     tags: ["Medical education", "VR training", "Product video"],
     summary: "Posted video for a VR medical education and training project, suitable for showcasing edit pacing, product clarity, and technical storytelling.",
     accent: "#00f0ff",
@@ -296,6 +402,7 @@ export const postedVideos: PostedVideo[] = [
     title: "2024 Highlights",
     source: "LinkedIn post",
     url: "https://www.linkedin.com/posts/inherited-games-studio_2024-highlights-activity-7279827859068641280-jfC8?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE9ulo4BQ4C5rCdO_Kv0uBIG9IvyK0a5Mww",
+    thumbnail: "/video-thumbnails/2024-highlights.png",
     tags: ["Highlights reel", "Studio recap", "Social edit"],
     summary: "A year-in-review style posted video for studio achievements, useful for showing rhythm, sequencing, and montage editing.",
     accent: "#ff525c",
@@ -304,6 +411,7 @@ export const postedVideos: PostedVideo[] = [
     title: "VR Cultural Heritage",
     source: "LinkedIn post",
     url: "https://www.linkedin.com/posts/inherited-games-studio_vr-culturalheritage-tunisianculture-activity-7325123333740548096-lEIU?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE9ulo4BQ4C5rCdO_Kv0uBIG9IvyK0a5Mww",
+    thumbnail: "/video-thumbnails/vr-cultural-heritage.jpg",
     tags: ["VR", "Cultural heritage", "Tunisian culture"],
     summary: "Posted video presenting a VR cultural heritage experience, strong for showing atmosphere, educational framing, and location/culture storytelling.",
     accent: "#d2c972",

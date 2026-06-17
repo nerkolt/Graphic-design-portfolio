@@ -18,11 +18,14 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nour Ltaief | Graphic Design & Video Editing Portfolio",
+  title: "Nour Ltaief Portfolio",
   description:
     "A graphic design and video editing portfolio showcasing branding, social campaigns, motion graphics, and edited video work.",
   icons: {
-    icon: "/nour-ltaief-logo.png",
+    icon: [
+      { url: "/nour-ltaief-logo.png", type: "image/png" },
+    ],
+    shortcut: "/nour-ltaief-logo.png",
     apple: "/nour-ltaief-logo.png",
   },
 };
@@ -36,8 +39,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${syne.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>{children}</body>
     </html>
   );
 }

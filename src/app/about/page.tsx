@@ -4,7 +4,7 @@ import { profile, services } from "@/data/portfolio";
 
 export default function AboutPage() {
   return (
-    <PageShell>
+    <PageShell showFooterCta>
       <section className="art-canvas py-16 sm:py-24">
         <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
